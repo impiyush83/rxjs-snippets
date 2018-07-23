@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learn RxJS with Coursetro</title>
+
+    <style>
+        
+        body { font-family: 'Arial'; background: #ececec; }
+        ul { list-style-type: none; padding: 20px; }
+        li { padding: 20px; background: white; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <!-- <button name='click'>Onclick it will emit value clicked! </button> -->
+    <ul id="output"></ul>
+
+    <script src="Rx.min.js"></script>
+    <script type="text/javascript">
+    var foo = Rx.Observable.create(function (observer) {
+  console.log('Hello');
+  observer.next(42);
+  observer.next(100);
+  observer.next(200);
+  setTimeout(() => {
+    observer.next(300); // happens asynchronously
+  }, 1000);
+});
+
+console.log('before');
+foo.subscribe(function (x) {
+  console.log(x);
+});
+console.log('after');
+
+// 2 ways 
+
+// var observable = Rx.Observable.create(function (observer) {
+//   observer.next(1);
+//   observer.next(2);
+//   observer.next(3);
+// setTimeout(()=> {
+//     observer.next(4); 
+// },1000);
+// });                    // happens asynchronously 
+
+// console.log('just before subscribe 1');
+// observable.subscribe({
+//   next: x => console.log('got value ' + x),
+//   error: err => console.error('something wrong occurred: ' + err),
+//   complete: () => console.log('done'),
+// });
+// console.log('just after subscribe 1');
+
+    </script>
+</body>
+</html>
